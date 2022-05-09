@@ -55,7 +55,7 @@ private:
 
 	//Speed information
 	short int damping_starting_travel_ratio = 10; //This will start damping @ 1/10 the max travel at each end..  
-	//short int delay_speed_damping_rate = 25; //Amount changed per step while approaching end point
+	short int delay_speed_damping_rate = 25; //Amount changed per step while approaching end point
 	
 	short int delay_speed_change_amount = 100; //Amount changed per user input button hit
 
@@ -84,8 +84,6 @@ private:
 	short int travel_change_amount = 50; //Amount of travel is inc/dec with user button input
 
 
-
-	short int delay_speed_damping_rate = (max_delay_speed - target_delay_speed) / (maxTravel/damping_starting_travel_ratio); // Delay change per step within slowdown/speedup range
 
 	short int homeStep; //The center of the track, usually maxStep/2, but I want to add second Stop point to get an exact step count to find center in case things move around.
 

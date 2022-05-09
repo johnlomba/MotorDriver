@@ -112,6 +112,8 @@ void FLEXORClass::UpdateTravelParameter(void)
 
     minDamperStep = minTravel + int(maxTravel / damping_starting_travel_ratio);
 
+	delay_speed_damping_rate = (max_delay_speed - target_delay_speed) / (maxTravel/damping_starting_travel_ratio); // Delay change per step within slowdown/speedup range
+
     Serial.print("MAX TRAVEL: ");
     Serial.print(maxTravel);
 
