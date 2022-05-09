@@ -122,17 +122,19 @@ void FLEXORClass::UpdateTravelParameter(void)
 //Reduce Speed near edges
 void FLEXORClass::Adjust_Motor_Speed(void)
 {
-    //Reduce delay near the end of the travel
-    if (currentDirFWD && currentStep >= maxDamperStep)
+    // Increase delay when approaching end
+    if (currentDirFWD && currentStep > maxDamperStep)
     {
         delay_Micros = delay_Micros + delay_speed_damping_rate;
         delay_Micros = constrain(delay_Micros, target_delay_speed, max_delay_speed);
     }
-    else if (!currentDirFWD && currentStep <= minDamperStep)
+	// Increase delay when approaching origin
+    else if (!currentDirFWD && currentStep < minDamperStep)
     {
         delay_Micros = delay_Micros + delay_speed_damping_rate;
         delay_Micros = constrain(delay_Micros, target_delay_speed, max_delay_speed);
     }
+	// Accelerate after changing direction
     else if (delay_Micros > target_delay_speed)
     {       
         delay_Micros = delay_Micros - delay_speed_damping_rate;
